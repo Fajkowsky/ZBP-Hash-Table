@@ -10,6 +10,8 @@ public:
 	//std::pair<iterator,bool> insert(const T& value);
 	//void erase( iterator pos );
 	//iterator find(const T& key);
+	//iterator begin();
+	//iterator end();
 private:
 	struct field {
 		unsigned char state;
