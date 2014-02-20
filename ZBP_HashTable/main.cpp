@@ -16,7 +16,7 @@ void main(){
 			}
 			return (index);
 		}
-	} myInt;
+	};
 
 	struct myStringclass {
 		int operator() (std::string value, bool step, int table_size) { 
