@@ -5,6 +5,7 @@
 void main(){
 
 	struct myclass {
+	public:
 		int operator() (int value, bool step, int table_size) { 
 			int index;
 			index = value % table_size;
@@ -14,7 +15,7 @@ void main(){
 			}
 			return (index);
 		}
-	};
+	} myInt;
 
 	struct myStringclass {
 		int operator() (std::string value, bool step, int table_size) { 
@@ -39,7 +40,9 @@ void main(){
 		}
 	};
 
-	HashTable<int> tablica;
+//	HashTable<int> tablica(myInt);
+	
+	
 	std::cout << "Test";
 	getchar();
 }

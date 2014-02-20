@@ -5,6 +5,7 @@ class HashTable
 {
 public:
 	HashTable(void);
+	HashTable(int (*pred)(int,bool,int));
 	~HashTable(void);
 
 	//std::pair<iterator,bool> insert(const T& value);
