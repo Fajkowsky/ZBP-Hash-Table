@@ -2,7 +2,7 @@
 #include "HashTable.h"
 
 void main(){
-	HashTable tablica;
+	HashTable<int> tablica;
 	std::cout << "Test";
 	getchar();
 }
