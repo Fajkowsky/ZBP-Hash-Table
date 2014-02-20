@@ -11,5 +11,7 @@ HashTable<T>::~HashTable(void)
 {
 }
 
+
+
 template class HashTable<int>;
 template class HashTable<std::string>;
