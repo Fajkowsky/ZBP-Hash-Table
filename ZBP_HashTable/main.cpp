@@ -2,6 +2,7 @@
 #include "HashTable.h"
 #include <string>
 
+
 void main(){
 
 	struct myclass {
@@ -40,8 +41,18 @@ void main(){
 		}
 	};
 
-//	HashTable<int> tablica(myInt);
-	
+	class printerstring
+	{
+	public:
+		void operator()(std::string d)
+		{
+			std::cout << "omg " << d.c_str() << std::endl;
+		}
+	};
+
+	printerstring p;
+	HashTable<int, printerstring> tablica;
+	tablica.uzyj(p);
 	
 	std::cout << "Test";
 	getchar();

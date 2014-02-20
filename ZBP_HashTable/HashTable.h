@@ -1,12 +1,12 @@
 #pragma once
 
-template <typename T>
+template <typename T, typename Fun>
 class HashTable
 {
 public:
 	HashTable(void);
-	HashTable(int (*pred)(int,bool,int));
 	~HashTable(void);
+	void uzyj(Fun);
 
 	//std::pair<iterator,bool> insert(const T& value);
 	//void erase( iterator pos );
@@ -14,6 +14,7 @@ public:
 	//iterator begin();
 	//iterator end();
 private:
+	int index;
 	struct field {
 		unsigned char state;
 		T value;
