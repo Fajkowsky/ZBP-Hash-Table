@@ -5,8 +5,8 @@ class HashTable
 {
 public:
 	HashTable(void);
+	HashTable(Fun);
 	~HashTable(void);
-	void uzyj(Fun);
 
 	//std::pair<iterator,bool> insert(const T& value);
 	//void erase( iterator pos );
@@ -23,3 +23,17 @@ private:
 	//void resize();
 };
 
+template <typename T, typename Fun>
+HashTable<T, Fun>::HashTable(){
+
+}
+
+template <typename T, typename Fun>
+HashTable<T, Fun>::HashTable(Fun fun){
+	fun("asd");
+}
+
+template <typename T, typename Fun>
+HashTable<T, Fun>::~HashTable(){
+
+}

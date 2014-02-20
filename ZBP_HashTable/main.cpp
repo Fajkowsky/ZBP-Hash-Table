@@ -51,8 +51,7 @@ void main(){
 	};
 
 	printerstring p;
-	HashTable<int, printerstring> tablica;
-	tablica.uzyj(p);
+	HashTable<int, printerstring> tablica(p);
 	
 	std::cout << "Test";
 	getchar();
