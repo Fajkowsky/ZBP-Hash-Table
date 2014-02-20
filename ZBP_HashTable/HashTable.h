@@ -8,7 +8,7 @@ public:
 	~HashTable(void);
 private:
 	struct field {
-		int state;
+		unsigned char state;
 		T value;
 	};
 	field hash_table[2];
