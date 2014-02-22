@@ -53,11 +53,11 @@ void main(){
 	myclass int_funktor;
 	HashTable<int, myclass> tablica(int_funktor);
 	tablica.insert(5);
-	tablica.insert(10);
-	tablica.insert(5);
-	tablica.insert(10);
-	tablica.insert(5);
-	tablica.erase(tablica.find(10));
+	tablica.insert(11);
+	tablica.insert(51);
+	tablica.insert(101);
+	tablica.insert(15);
+	tablica.erase(tablica.find(5));
 	std::cout << "Test";
 	getchar();
 }

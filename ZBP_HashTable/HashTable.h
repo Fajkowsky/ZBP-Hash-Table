@@ -69,6 +69,10 @@ public:
 			else return 1;
 		}
 
+		int getIndex()
+		{
+			return this->index;
+		}
 	};
 
 	iterator insert(const T & value)
@@ -97,7 +101,7 @@ public:
 	{
 		if(pos != this->end())
 		{
-			this->hash_table[pos].state = 'd';
+			this->hash_table[pos.getIndex()].state = 'd';
 		}
 	}
 
