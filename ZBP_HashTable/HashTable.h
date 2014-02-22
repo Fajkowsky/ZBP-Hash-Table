@@ -70,10 +70,10 @@ public:
 
 	};
 
-	iterator insert(const T & val)
+	iterator insert(const T & value)
 	{
-		size_t key1 = this->hash_function(val, 0, this->table_size);
-		size_t key2 = this->hash_function(val, 1, this->table_size);
+		size_t key1 = this->hash_function(value, 0, this->table_size);
+		size_t key2 = this->hash_function(value, 1, this->table_size);
 
 		for(int i=0;i < table_size; i++)
 		{
@@ -83,7 +83,7 @@ public:
 			{
 				iterator it(*this);
 				it.setIndex(index);
-				hash_table[index].value = val;
+				hash_table[index].value = value;
 				hash_table[index].state = 't';
 
 				return it;
@@ -92,7 +92,29 @@ public:
 		return this->end();
 	}
 	//void erase( iterator pos );
-	//iterator find(const T& key);
+
+	iterator find(const T& value)
+	{
+		size_t key1 = this->hash_function(value, 0, this->table_size);
+		size_t key2 = this->hash_function(value, 1, this->table_size);
+
+		for(int i=0;i < table_size; i++)
+		{
+			index = (key1 + i*key2) % this->table_size;
+
+			if(hash_table[index].value == value)
+			{
+				iterator it(*this);
+				it.setIndex(index);
+				
+				return it;
+			}
+			else if(hash_table[index].state == 'e')
+				return this->end();
+		}
+		return this->end();
+	}
+
 	iterator begin()
 	{
 		iterator it(*this);

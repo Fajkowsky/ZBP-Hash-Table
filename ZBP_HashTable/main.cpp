@@ -57,7 +57,7 @@ void main(){
 	tablica.insert(5);
 	tablica.insert(10);
 	tablica.insert(5);
-	tablica.insert(10);
+	tablica.find(10);
 	std::cout << "Test";
 	getchar();
 }
