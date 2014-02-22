@@ -50,7 +50,12 @@ void main(){
 		}
 	};
 
-	HashTable<int, printerstring> tablica;
+	myclass int_funktor;
+	HashTable<int, myclass> tablica(int_funktor);
+	tablica.insert(5);
+	tablica.insert(10);
+	tablica.insert(5);
+	tablica.insert(10);
 	tablica.insert(5);
 	tablica.insert(10);
 	std::cout << "Test";

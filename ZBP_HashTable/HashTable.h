@@ -6,14 +6,15 @@ class HashTable
 public:
 	HashTable(void)
 	{
-		this->index = 0;
+
 	}
-	
+
 	HashTable(Fun fun)
 	{
 		this->hash_function = fun;
+		this->table_size = 8;
 	}
-	
+
 	~HashTable(void)
 	{
 
@@ -71,15 +72,24 @@ public:
 
 	iterator insert(const T & val)
 	{
-		size_t id = getNextIndex(val); 
+		size_t key1 = this->hash_function(val, 0, this->table_size);
+		size_t key2 = this->hash_function(val, 1, this->table_size);
 
-		iterator it(*this);
-		it.setIndex(id);
+		for(int i=0;i < table_size; i++)
+		{
+			index = (key1 + i*key2) % this->table_size;
 
-		hash_table[id].value = val;
-		hash_table[id].state = 't';
+			if(hash_table[index].state != 't')
+			{
+				iterator it(*this);
+				it.setIndex(index);
+				hash_table[index].value = val;
+				hash_table[index].state = 't';
 
-		return it;
+				return it;
+			}
+		}
+		return this->end();
 	}
 	//void erase( iterator pos );
 	//iterator find(const T& key);
@@ -112,7 +122,7 @@ private:
 		unsigned char state;  // e = empty; f = free; t = taken
 		T value;
 	};
-	field hash_table[2];
+	field hash_table[8];
 	Fun hash_function;
 	//void resize();
 };
