@@ -97,7 +97,7 @@ public:
 	{
 		if(pos != this->end())
 		{
-			this->hash_table[*pos].state = 'd';
+			this->hash_table[pos].state = 'd';
 		}
 	}
 
@@ -129,9 +129,9 @@ public:
 	}
 
 
-	field get(int index)
+	T & get(int index)
 	{
-		return table[index];
+		return hash_table[index].value;
 	}
 
 	iterator begin()
