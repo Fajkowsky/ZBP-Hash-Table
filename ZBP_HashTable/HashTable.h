@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template <typename T, typename Fun>
 class HashTable
@@ -91,7 +92,19 @@ public:
 		}
 		return this->end();
 	}
-	//void erase( iterator pos );
+
+	void erase( iterator pos )
+	{
+		if(pos != this->end())
+		{
+			this->hash_table[*pos].state = 'd';
+		}
+	}
+
+	size_t getCapacity()
+	{
+		return table_size;
+	}
 
 	iterator find(const T& value)
 	{
@@ -115,6 +128,12 @@ public:
 		return this->end();
 	}
 
+
+	field get(int index)
+	{
+		return table[index];
+	}
+
 	iterator begin()
 	{
 		iterator it(*this);
@@ -129,11 +148,6 @@ public:
 		return it;
 	}
 
-	size_t getNextIndex(const T & val)
-	{
-		return index++;
-	}
-
 private:
 	int index, table_size;
 	struct field {
@@ -141,7 +155,7 @@ private:
 		{
 			state = 'e';
 		}
-		unsigned char state;  // e = empty; f = free; t = taken
+		unsigned char state;  // e = empty; d = deleted; t = taken
 		T value;
 	};
 	field hash_table[8];
