@@ -8,10 +8,12 @@ public:
 	{
 		this->index = 0;
 	}
+	
 	HashTable(Fun fun)
 	{
 		this->hash_function = fun;
 	}
+	
 	~HashTable(void)
 	{
 
@@ -86,13 +88,14 @@ public:
 		it.setIndex(0);
 		return it;
 	}
+
 	iterator end()
 	{
 		iterator it(*this);
 		it.setIndex(max_index);
 		return it;
 	}
-	
+
 	size_t getNextIndex(const T & val)
 	{
 		return index++;
@@ -105,7 +108,7 @@ private:
 		{
 			state = 'e';
 		}
-		unsigned char state;
+		unsigned char state;  // e = empty; f = free; t = taken
 		T value;
 	};
 	field hash_table[2];
