@@ -50,9 +50,9 @@ void main(){
 		}
 	};
 
-	printerstring p;
-	HashTable<int, printerstring> tablica(p);
-	
+	HashTable<int, printerstring> tablica;
+	tablica.insert(5);
+	tablica.insert(10);
 	std::cout << "Test";
 	getchar();
 }

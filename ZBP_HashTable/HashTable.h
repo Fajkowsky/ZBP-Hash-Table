@@ -6,11 +6,11 @@ class HashTable
 public:
 	HashTable(void)
 	{
-
+		this->index = 0;
 	}
 	HashTable(Fun fun)
 	{
-		fun("asd");
+		this->hash_function = fun;
 	}
 	~HashTable(void)
 	{
@@ -74,7 +74,7 @@ public:
 		iterator it(*this);
 		it.setIndex(id);
 
-		table[id].value = val;
+		hash_table[id].value = val;
 
 		return it;
 	}
@@ -89,13 +89,17 @@ public:
 	iterator end()
 	{
 		iterator it(*this);
-		it.setIndex(MAXID);
+		it.setIndex(max_index);
 		return it;
 	}
-
+	
+	size_t getNextIndex(const T & val)
+	{
+		return index++;
+	}
 
 private:
-	int index;
+	int index, max_index;
 	struct field {
 		field()
 		{
@@ -105,5 +109,6 @@ private:
 		T value;
 	};
 	field hash_table[2];
+	Fun hash_function;
 	//void resize();
 };
