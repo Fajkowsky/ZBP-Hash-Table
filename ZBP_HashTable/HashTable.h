@@ -69,12 +69,13 @@ public:
 
 	iterator insert(const T & val)
 	{
-		size_t id = getNextIndex(val);
+		size_t id = getNextIndex(val); 
 
 		iterator it(*this);
 		it.setIndex(id);
 
 		hash_table[id].value = val;
+		hash_table[id].state = 't';
 
 		return it;
 	}
@@ -89,7 +90,7 @@ public:
 	iterator end()
 	{
 		iterator it(*this);
-		it.setIndex(max_index);
+		it.setIndex(table_size);
 		return it;
 	}
 	
@@ -99,7 +100,7 @@ public:
 	}
 
 private:
-	int index, max_index;
+	int index, table_size;
 	struct field {
 		field()
 		{
