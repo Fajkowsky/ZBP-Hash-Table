@@ -7,13 +7,15 @@ class HashTable
 public:
 	HashTable(void)
 	{
-
+		this->table_size = 8;
+		this->taken = 0;
 	}
 
 	HashTable(Fun fun)
 	{
 		this->hash_function = fun;
 		this->table_size = 8;
+		this->taken = 0;
 	}
 
 	~HashTable(void)
@@ -90,7 +92,8 @@ public:
 				it.setIndex(index);
 				hash_table[index].value = value;
 				hash_table[index].state = 't';
-
+				this->taken++;
+				resize();
 				return it;
 			}
 		}
@@ -102,6 +105,7 @@ public:
 		if(pos != this->end())
 		{
 			this->hash_table[pos.getIndex()].state = 'd';
+			this->taken--;
 		}
 	}
 
@@ -123,7 +127,7 @@ public:
 			{
 				iterator it(*this);
 				it.setIndex(index);
-				
+
 				return it;
 			}
 			else if(hash_table[index].state == 'e')
@@ -151,7 +155,7 @@ public:
 	}
 
 private:
-	int index, table_size;
+	int index, table_size, taken;
 	struct field {
 		field()
 		{
@@ -167,6 +171,27 @@ private:
 	}
 
 	field hash_table[8];
+	field tmp_table[1];
 	Fun hash_function;
-	//void resize();
+
+	void resize()
+	{
+		float full = (float)this->taken / (float)this->table_size;
+
+		if (full > 0.7) {
+			int old_size = this->table_size;
+			memcpy(this->hash_table, this->tmp_table, );
+			
+			// clear 
+			// resize
+			// taken = 0
+
+			for (int i = 0; i < old_size; i++){
+				if (this->tmp_table[i].state == 't'){
+					this->insert(this->tmp_table[i].value);
+				}
+			}
+			// clear tmp_table
+		}
+	}
 };
