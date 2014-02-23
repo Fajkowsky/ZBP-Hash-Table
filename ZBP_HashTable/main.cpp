@@ -59,10 +59,12 @@ void main(){
 	tablica.insert(15);
 	tablica.insert(98);
 	tablica.insert(5);
-	//tablica.erase(tablica.find(5));
+	tablica.erase(tablica.find(5));
 	
 	for(int i=0;i<tablica.size();i++)
 		std::cout << tablica[i] << std::endl;
+
+	std::cout << tablica.size() << std::endl;
 
 	tablica.find(11);
 

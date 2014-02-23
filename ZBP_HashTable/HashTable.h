@@ -183,13 +183,15 @@ private:
 		float full = (float)this->taken / (float)this->table_size;
 
 		if (full > 0.7) {
+
 			int old_size = this->table_size;
 			field* tmp_hash_table = new field[old_size];
 			std::memcpy(tmp_hash_table, this->hash_table, old_size * sizeof(field));
 			
 			this->taken = 0;
 			delete[] this->hash_table;
-			this->hash_table = new field[old_size*2];
+			this->table_size = old_size * 2;
+			this->hash_table = new field[this->table_size];
 
 			for (int i = 0; i < old_size; i++){
 				if (tmp_hash_table[i].state == 't'){
