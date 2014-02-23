@@ -68,7 +68,7 @@ public:
 
 		operator int()
 		{
-			if(index >= myTable.getCapacity()) return 0;
+			if(index >= myTable.size()) return 0;
 			else return 1;
 		}
 
@@ -112,7 +112,7 @@ public:
 		}
 	}
 
-	size_t getCapacity()
+	size_t size()
 	{
 		return this->table_size;
 	}
@@ -159,7 +159,7 @@ public:
 
 private:
 
-	int index, size, table_size, taken;
+	int index, table_size, taken;
 
 	struct field {
 		field()
@@ -175,7 +175,6 @@ private:
 		return hash_table[index].value;
 	}
 
-	field tmp_table[1];
 	field* hash_table;
 	Fun hash_function;
 
@@ -185,18 +184,20 @@ private:
 
 		if (full > 0.7) {
 			int old_size = this->table_size;
-			//memcpy(this->hash_table, this->tmp_table, );
+			field* tmp_hash_table = new field[old_size];
+			std::memcpy(tmp_hash_table, this->hash_table, old_size * sizeof(field));
 			
-			// clear 
-			// resize
-			// taken = 0
+			this->taken = 0;
+			delete[] this->hash_table;
+			this->hash_table = new field[old_size*2];
 
 			for (int i = 0; i < old_size; i++){
-				if (this->tmp_table[i].state == 't'){
-					this->insert(this->tmp_table[i].value);
+				if (tmp_hash_table[i].state == 't'){
+					this->insert(tmp_hash_table[i].value);
 				}
 			}
-			// clear tmp_table
+
+			delete[] tmp_hash_table;
 		}
 	}
 };

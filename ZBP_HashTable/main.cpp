@@ -52,19 +52,16 @@ void main(){
 
 	myclass int_funktor;
 	HashTable<int, myclass> tablica(int_funktor);
-	tablica.insert(5);
-	tablica.insert(11);
+	tablica.insert(1);
+	tablica.insert(0);
 	tablica.insert(51);
 	tablica.insert(101);
 	tablica.insert(15);
-	tablica.insert(91);
-	tablica.insert(1);
-	tablica.erase(tablica.find(5));
-	std::cout << tablica[1] << std::endl;
-	std::cout << "Test";
-
+	tablica.insert(98);
+	tablica.insert(5);
+	//tablica.erase(tablica.find(5));
 	
-	for(int i=0;i<8;i++)
+	for(int i=0;i<tablica.size();i++)
 		std::cout << tablica[i] << std::endl;
 
 	tablica.find(11);
