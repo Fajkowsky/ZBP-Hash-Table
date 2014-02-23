@@ -62,5 +62,12 @@ void main(){
 	tablica.erase(tablica.find(5));
 	std::cout << tablica[1] << std::endl;
 	std::cout << "Test";
+
+	
+	for(int i=0;i<8;i++)
+		std::cout << tablica[i] << std::endl;
+
+	tablica.find(11);
+
 	getchar();
 }
