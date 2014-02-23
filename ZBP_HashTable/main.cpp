@@ -58,6 +58,7 @@ void main(){
 	tablica.insert(101);
 	tablica.insert(15);
 	tablica.erase(tablica.find(5));
+	std::cout << tablica[1] << std::endl;
 	std::cout << "Test";
 	getchar();
 }

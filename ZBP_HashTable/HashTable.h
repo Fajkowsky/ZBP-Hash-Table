@@ -132,12 +132,10 @@ public:
 		return this->end();
 	}
 
-
-	T & get(int index)
+	T& operator[] (const int index)
 	{
-		return hash_table[index].value;
+		return this->hash_table[index].value;
 	}
-
 	iterator begin()
 	{
 		iterator it(*this);
@@ -162,6 +160,12 @@ private:
 		unsigned char state;  // e = empty; d = deleted; t = taken
 		T value;
 	};
+
+	T & get(int index)
+	{
+		return hash_table[index].value;
+	}
+
 	field hash_table[8];
 	Fun hash_function;
 	//void resize();
