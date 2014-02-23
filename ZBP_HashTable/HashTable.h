@@ -14,6 +14,8 @@ public:
 	{
 		this->hash_function = fun;
 		this->table_size = 8;
+		this->size = 0;
+		this->hash_table = new field[this->table_size];
 	}
 
 	~HashTable(void)
@@ -82,14 +84,15 @@ public:
 
 		for(int i=0;i < table_size; i++)
 		{
-			index = (key1 + i*key2) % this->table_size;
+			this->index = (key1 + i*key2) % this->table_size;
 
-			if(hash_table[index].state != 't')
+			if(this->hash_table[index].state != 't')
 			{
 				iterator it(*this);
 				it.setIndex(index);
-				hash_table[index].value = value;
-				hash_table[index].state = 't';
+				this->hash_table[index].value = value;
+				this->hash_table[index].state = 't';
+				this->size++;
 
 				return it;
 			}
@@ -102,12 +105,13 @@ public:
 		if(pos != this->end())
 		{
 			this->hash_table[pos.getIndex()].state = 'd';
+			this->size--;
 		}
 	}
 
 	size_t getCapacity()
 	{
-		return table_size;
+		return this->table_size;
 	}
 
 	iterator find(const T& value)
@@ -150,8 +154,13 @@ public:
 		return it;
 	}
 
+	void resize()
+	{
+		//this->hash_table = new field[16];
+	}
+
 private:
-	int index, table_size;
+	int index, size, table_size;
 	struct field {
 		field()
 		{
@@ -166,7 +175,7 @@ private:
 		return hash_table[index].value;
 	}
 
-	field hash_table[8];
+	field* hash_table;
 	Fun hash_function;
 	//void resize();
 };
