@@ -12,6 +12,30 @@ public:
 		}
 		return (index);
 	}
+
+	int operator() (std::string value, bool step, int table_size) { 
+		int b,index = 0;
+		int a = 29;
+
+		if(!step){
+			for (unsigned int i = 0; i < value.length(); i++){
+				index = (a * index + value[i]) % table_size;
+			}
+		}
+		a = 31415;
+		b = 27183;
+		if(step){
+			for (unsigned int i = 0; i < value.length(); i++){
+				index = (a * index + value[i]) % table_size;
+				a = (a * b) % (table_size - 1);
+			}
+			if ((index % 2) == 0){
+				index++;
+			}
+		}
+
+		return (index);
+	}
 } tmp;
 
 template <typename T, typename Fun = hashClass>
