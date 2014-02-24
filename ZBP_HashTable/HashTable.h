@@ -114,6 +114,11 @@ public:
 
 	size_t size()
 	{
+		return this->taken;
+	}
+
+	size_t max_size()
+	{
 		return this->table_size;
 	}
 
@@ -199,7 +204,7 @@ private:
 				}
 			}
 
-			delete[] tmp_hash_table;
+			//delete[] tmp_hash_table;
 		}
 	}
 };
