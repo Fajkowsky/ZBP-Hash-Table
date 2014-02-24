@@ -86,6 +86,8 @@ public:
 		for(int i=0;i < table_size; i++)
 		{
 			this->index = (key1 + i*key2) % this->table_size;
+			if(this->hash_table[index].value == value)
+				break;
 
 			if(this->hash_table[index].state != 't')
 			{

@@ -131,6 +131,7 @@ void szukanie(){
 	std::random_shuffle ( int_dane.begin(), int_dane.end() );
 	double elementy = 0.0;
 	std::vector<int>::iterator it;
+	std::vector<std::string>::iterator string_it;
 
 	start_timer();
 	for(it=int_dane.begin(); it!=int_dane.end(); ++it)
@@ -138,7 +139,7 @@ void szukanie(){
 		elementy++;
 		int_tablica.find(*it);
 	}
-	std::cout << "Szukanie dla hash_table: " << get_time()/elementy << " " << elementy << std::endl;
+	std::cout << "Szukanie int dla hash_table: " << get_time()/elementy << " " << elementy << std::endl;
 
 	elementy = 0.0;
 	start_timer();
@@ -147,7 +148,7 @@ void szukanie(){
 		elementy++;
 		int_set.find(*it);
 	}
-	std::cout << "Szukanie dla set: " << get_time()/elementy << " " << elementy << std::endl;
+	std::cout << "Szukanie int dla set: " << get_time()/elementy << " " << elementy << std::endl;
 
 	elementy = 0.0;
 	start_timer();
@@ -156,7 +157,34 @@ void szukanie(){
 		elementy++;
 		int_uset.find(*it);
 	}
-	std::cout << "Szukanie dla uset: " << get_time()/elementy << " " << elementy << std::endl;
+	std::cout << "Szukanie int dla uset: " << get_time()/elementy << " " << elementy << std::endl;
+
+	elementy = 0.0;
+	start_timer();
+	for(string_it=string_dane.begin(); string_it!=string_dane.end(); ++string_it)
+	{
+		elementy++;
+		string_tablica.find(*string_it);
+	}
+	std::cout << "Szukanie string dla hash_table: " << get_time()/elementy << " " << elementy << std::endl;
+
+	elementy = 0.0;
+	start_timer();
+	for(string_it=string_dane.begin(); string_it!=string_dane.end(); ++string_it)
+	{
+		elementy++;
+		string_set.find(*string_it);
+	}
+	std::cout << "Szukanie string dla set: " << get_time()/elementy << " " << elementy << std::endl;
+
+	elementy = 0.0;
+	start_timer();
+	for(string_it=string_dane.begin(); string_it!=string_dane.end(); ++string_it)
+	{
+		elementy++;
+		string_uset.find(*string_it);
+	}
+	std::cout << "Szukanie string dla uset: " << get_time()/elementy << " " << elementy << std::endl;
 }
 
 void main(){
@@ -168,10 +196,6 @@ void main(){
 	std::cout << std::endl;
 	szukanie();
 	std::cout << std::endl;
-
-	std::cout << int_tablica.count(5);
-	std::cout << int_set.count(5);
-	std::cout <<  int_uset.count(5);
 
 	getchar();
 }
