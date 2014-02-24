@@ -127,9 +127,16 @@ public:
 		}
 	}
 
-	size_t size()
+	int size()
 	{
 		return this->taken;
+	}
+	
+	int count(const T & value)
+	{
+		if(this->find(value) == this->end())
+			return 0;
+		return 1;
 	}
 
 	size_t max_size()

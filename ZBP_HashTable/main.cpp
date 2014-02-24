@@ -7,6 +7,7 @@
 #include <unordered_set>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 
 clock_t begin_time;
 void start_timer(){ 
@@ -22,7 +23,9 @@ struct myclass {
 		index = value % table_size;
 
 		if(step){
-			index = (3 + (value % 3));
+			int q = 4007;
+			int p = 94583;
+			index = ((q * value) % p);
 		}
 		return (index);
 	}
@@ -66,7 +69,7 @@ std::unordered_set<std::string> string_uset;
 std::vector<int> int_dane;
 std::vector<std::string> string_dane;
 
-int ile = 100000;
+int ile = 1000000;
 
 
 
@@ -75,8 +78,9 @@ void generuj_dane(){
 	int k = 3;
 	for(int i=0;i<ile;i++){
 		int_dane.push_back(k*i);
-		k += 11;
+		k += 2;
 	}
+	std::random_shuffle ( int_dane.begin(), int_dane.end() );
 	std::cout << "Generuje stringi" << std::endl;
 	std::ifstream dict("polski.txt");
 	std::string line;
@@ -123,12 +127,51 @@ void wstawianie() {
 	std::cout << "Czas dla wstawiania uset " << string_uset.size() << " rekordow string: " << get_time() <<std::endl;
 }
 
+void szukanie(){
+	std::random_shuffle ( int_dane.begin(), int_dane.end() );
+	double elementy = 0.0;
+	std::vector<int>::iterator it;
+
+	start_timer();
+	for(it=int_dane.begin(); it!=int_dane.end(); ++it)
+	{
+		elementy++;
+		int_tablica.find(*it);
+	}
+	std::cout << "Szukanie dla hash_table: " << get_time()/elementy << " " << elementy << std::endl;
+
+	elementy = 0.0;
+	start_timer();
+	for(it=int_dane.begin(); it!=int_dane.end(); ++it)
+	{
+		elementy++;
+		int_set.find(*it);
+	}
+	std::cout << "Szukanie dla set: " << get_time()/elementy << " " << elementy << std::endl;
+
+	elementy = 0.0;
+	start_timer();
+	for(it=int_dane.begin(); it!=int_dane.end(); ++it)
+	{
+		elementy++;
+		int_uset.find(*it);
+	}
+	std::cout << "Szukanie dla uset: " << get_time()/elementy << " " << elementy << std::endl;
+}
+
 void main(){
 	setlocale(LC_ALL, "polish");
 
 	generuj_dane();
+	std::cout << std::endl;
 	wstawianie();
+	std::cout << std::endl;
+	szukanie();
+	std::cout << std::endl;
 
+	std::cout << int_tablica.count(5);
+	std::cout << int_set.count(5);
+	std::cout <<  int_uset.count(5);
 
 	getchar();
 }
