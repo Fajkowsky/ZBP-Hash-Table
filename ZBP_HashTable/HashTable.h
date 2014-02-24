@@ -170,6 +170,13 @@ public:
 		return this->table_size;
 	}
 
+	void clear()
+	{
+		for(int i=0; i<this->table_size; i++)
+			this->hash_table[i].state = 'e';
+		this->taken = 0;
+	}
+
 	iterator find(const T& value)
 	{
 		size_t key1 = this->hash_function(value, 0, this->table_size);
@@ -196,6 +203,7 @@ public:
 	{
 		return this->hash_table[index].value;
 	}
+
 	iterator begin()
 	{
 		iterator it(*this);
@@ -241,7 +249,7 @@ private:
 			field* tmp_hash_table = new field[old_size];
 			std::memcpy(tmp_hash_table, this->hash_table, old_size * sizeof(field));
 			
-			this->taken = 1;
+			this->taken = 0;
 			delete[] this->hash_table;
 			this->table_size = old_size * 2;
 			this->hash_table = new field[this->table_size];
