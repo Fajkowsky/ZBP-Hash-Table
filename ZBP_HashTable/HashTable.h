@@ -217,7 +217,7 @@ private:
 			field* tmp_hash_table = new field[old_size];
 			std::memcpy(tmp_hash_table, this->hash_table, old_size * sizeof(field));
 			
-			this->taken = 0;
+			this->taken = 1;
 			delete[] this->hash_table;
 			this->table_size = old_size * 2;
 			this->hash_table = new field[this->table_size];
