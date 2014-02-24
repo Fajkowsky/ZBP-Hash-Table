@@ -9,7 +9,8 @@
 #include <fstream>
 #include <algorithm>
 
-clock_t begin_time;
+clock_t begin_time;
+
 void start_timer(){ 
 	begin_time = clock();
 }
@@ -26,6 +27,10 @@ struct myclass {
 			int q = 4007;
 			int p = 94583;
 			index = ((q * value) % p);
+
+			if ((index % 2) == 0){
+				index++;
+			}
 		}
 		return (index);
 	}
@@ -47,6 +52,9 @@ struct myStringclass {
 			for (unsigned int i = 0; i < value.length(); i++){
 				index = (a * index + value[i]) % table_size;
 				a = (a * b) % (table_size - 1);
+			}
+			if ((index % 2) == 0){
+				index++;
 			}
 		}
 

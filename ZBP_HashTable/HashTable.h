@@ -1,14 +1,29 @@
 #pragma once
 #include <iostream>
 
-template <typename T, typename Fun>
+struct hashClass {
+public:
+	int operator() (int value, bool step, int table_size) { 
+		int index;
+		index = value % table_size;
+
+		if(step){
+			index = (3 + (value % 3));
+		}
+		return (index);
+	}
+} tmp;
+
+template <typename T, typename Fun = hashClass>
 class HashTable
 {
 public:
 	HashTable(void)
 	{
+		this->hash_function = tmp;
 		this->table_size = 8;
 		this->taken = 0;
+		this->hash_table = new field[this->table_size];
 	}
 
 	HashTable(Fun fun)
