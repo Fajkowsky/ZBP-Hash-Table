@@ -260,7 +260,6 @@ private:
 				}
 			}
 
-			//delete[] tmp_hash_table;
 		}
 	}
 };
